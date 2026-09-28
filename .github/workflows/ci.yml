@@ -1,26 +1,14 @@
-name: CI Pipeline
+name: CI
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
+  platform-ci:
+    permissions:
+      contents: read
+      packages: write
+    uses: Nizar835/platform-demo-lab1/.github/workflows/ci-nizar835.yml@patch-1
